@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>三国杀 Agent · 武将自动生成</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <h1>⚔ 三国杀 Agent</h1>
+    <p class="sub">输入一句武将描述 → 自动规范化 → 生成 FreeKill 可直接加载的 Lua 代码</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 输入区 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>1 · 输入武将描述</h2>
+      <select id="provider" title="模型提供方"></select>
+    </div>
+    <textarea id="desc" rows="6"
+      placeholder="例如：设计一个群势力4体力男性武将「铁壁卫士」，技能「铁壁」：每当你受到1点伤害后，你可以摸一张牌。&#10;&#10;可以补充势力/性别/体力/技能名字，也可同时描述多个技能甚至多个武将。"></textarea>
+    <div class="presets">
+      <span class="label">试试示例：</span>
+      <span id="presets"></span>
+    </div>
+    <div class="actions">
+      <button id="runBtn" class="primary">🚀 生成武将代码</button>
+      <button id="copyBtn" class="ghost" disabled>复制当前文件</button>
+      <button id="downloadBtn" class="ghost" disabled>下载全部文件</button>
+    </div>
+    <div id="err" class="err" hidden></div>
+  </section>
+
+  <!-- 流水线 -->
+  <section class="card" id="stageCard" hidden>
+    <div class="card-head"><h2>2 · 处理过程</h2></div>
+    <ol id="stages" class="stages"></ol>
+  </section>
+
+  <!-- 结果 -->
+  <section class="card" id="resultCard" hidden>
+    <div class="card-head">
+      <h2>3 · 结果</h2>
+      <span class="meta" id="meta"></span>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="spec">规范化 JSON</button>
+      <button class="tab" data-tab="files">Lua 代码</button>
+      <button class="tab" data-tab="summary">武将摘要</button>
+      <button class="tab" data-tab="warn">提示 <span class="badge" id="warnCount">0</span></button>
+    </div>
+
+    <div class="tab-pane active" id="pane-spec">
+      <pre id="specOut" class="code"></pre>
+    </div>
+
+    <div class="tab-pane" id="pane-files">
+      <div class="filebar">
+        <select id="fileSelect" class="file-select"></select>
+      </div>
+      <pre id="fileOut" class="code lua"></pre>
+    </div>
+
+    <div class="tab-pane" id="pane-summary"><pre id="summaryOut" class="plain"></pre></div>
+    <div class="tab-pane" id="pane-warn"><ul id="warnOut" class="warn-list"></ul></div>
+  </section>
+</main>
+
+<footer class="foot">代码由 AI 生成，仅供 DIY 参考 —— 请在 FreeKill 中实测后使用 · 三国杀 Agent</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

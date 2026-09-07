@@ -1,0 +1,8 @@
+# 三国杀 Agent —— 依赖说明
+# 核心功能（描述规范化 + Lua 代码生成 + 本地 Web 界面 + Mock 演示）全部使用 Python 标准库，
+# 无需安装任何依赖即可运行：  python run_server.py
+#
+# 仅在需要调用「真实大模型」时安装对应 SDK（也可使用内置的 urllib 兼容客户端，无需 SDK）：
+#   pip install openai        # 若使用 OpenAI 兼容接口（智谱/DeepSeek 等，走 OPENAI_BASE_URL）
+#   pip install anthropic     # 若使用 Anthropic Claude
+# 不安装 SDK 时，程序会提示改用兼容模式或 Mock。
